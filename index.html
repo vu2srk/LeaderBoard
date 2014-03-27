@@ -19,13 +19,6 @@
     	scoreBoard = new myLeaderBoard();
     	
     	scoreBoard.refresh();
-    	
-    	$('table').tableSort( {
-		    animation :	'slide',
-		    speed:	500,
-		    direction: 'descending'
-		});
-    	
     	setInterval("scoreBoard.refresh()", 10000);
     });
 	

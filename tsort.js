@@ -389,7 +389,7 @@ Array - Specifc table
 			function getNumber(string) {
 				var number = '';
 				for (var i = 0; i <= string.length; i++) {
-					if ( $.isNumeric(string.charAt(i)) || string.charAt(i) == '.' ) {
+					if ( $.isNumeric(string.charAt(i)) || string.charAt(i) == '.' || string.charAt(i) == '-') {
 						number += string.charAt(i);
 					}
 				}

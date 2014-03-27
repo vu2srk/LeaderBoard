@@ -11,21 +11,29 @@
 
 		refresh : function() {
 			//ur ajax goes here
-			/*$.get("https://bigdata-mlapi.s3.amazonaws.com/rat_rase/ranks/current/HIRSlotMachine?Expires=1395871926&AWSAccessKeyId=AKIAJ3BYQULTI3NCSMWQ&Signature=w54BNAEdajIw5cNkjezJdCYbrFs%3D", function(data){
-			if (data){
-			    this.draw(scores, $("#background-image"));
-			}
-			});*/
+			var me = this;
+			$.getJSON("https://ratrase.s3.amazonaws.com/rat_rase/ranks/current/HIRSlotMachine?Expires=1395908011&AWSAccessKeyId=AKIAJ7LELYX3ORJ57K4A&Signature=PkFQo3Q1SMjw%2FhsionqdM066BsU%3D", function(data) {
+				if (data) {
+					me.draw(data, $("#background-image"));
+				}
+			});
 
 			//dummy data
-			var scores = ["[elvira01, 53429692.000000]", "[oz03, 27045615.000000]", "[oz03, 77045615.000000]", "[lls05, 12797740.000000]", "[oz00, 8739146.000000]", "[t101, 7659554.000000]", "[com01, 7137569.000000]"];
-			this.draw(scores, $("#background-image"));
+			//var scores = ["[elvira01, 53429692.000000]", "[oz03, -27045615.000000]", "[oz03, 77045615.000000]", "[lls05, 12797740.000000]", "[oz00, 8739146.000000]", "[t101, 7659554.000000]", "[com01, 7137569.000000]"];
+			//this.draw(scores, $("#background-image"));
 		},
 
 		draw : function(json, hook) {
 			this.scoreBoard.refreshValues(json);
-			if ($(hook).find("table").length == 0)
-			    $(hook).html(this.scoreBoard.html);
+			if ($(hook).find("table").length == 0) {
+				$(hook).html(this.scoreBoard.html);
+				$('table').tableSort({
+					animation : 'slide',
+					speed : 500,
+					direction : 'descending',
+					sortBy : ['text', 'numeric']
+				});
+			}
 		}
 	};
 
@@ -38,8 +46,9 @@
 			var table = jQuery("<table>");
 			var headers = jQuery("<tr>");
 			var col2 = jQuery("<th>").html("Player").attr("id", "player-col");
-			var col3 = jQuery("<th>").html("Score").attr("id", "score-col");;
-			
+			var col3 = jQuery("<th>").html("Score").attr("id", "score-col");
+			;
+
 			$(headers).append(col2);
 			$(headers).append(col3);
 
