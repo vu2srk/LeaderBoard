@@ -2,9 +2,11 @@
 	<head>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="leaderboard.js"></script>
+		<script type="text/javascript" src="tsort.js"></script>
+		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<div id="leaderBoard">
+		<div id="background-image">
 			
 		</div>
 	</body>
@@ -13,7 +15,18 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
-    	myLeaderBoard().draw(["[elvira01, 53429692.000000]","[oz03, 27045615.000000]","[oz03, 27045615.000000]","[lls05, 12797740.000000]"], $("#leaderBoard"));
+    	
+    	scoreBoard = new myLeaderBoard();
+    	
+    	scoreBoard.refresh();
+    	
+    	$('table').tableSort( {
+		    animation :	'slide',
+		    speed:	500,
+		    direction: 'descending'
+		});
+    	
+    	setInterval("scoreBoard.refresh()", 10000);
     });
 	
 </script>

@@ -1,0 +1,48 @@
+#background-image
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+	background: url('mario.jpg') 330px 59px no-repeat;
+}
+#background-image th
+{
+	padding: 12px;
+	font-weight: normal;
+	font-size: 14px;
+	color: #339;
+}
+#background-image td
+{
+	padding: 9px 12px;
+	color: #669;
+	border-top: 1px solid #fff;
+}
+#background-image tfoot td
+{
+	font-size: 11px;
+}
+#background-image tbody td
+{
+	background: url('back.png');
+}
+* html #background-image tbody td
+{
+	/* 
+	   ----------------------------
+		PUT THIS ON IE6 ONLY STYLE 
+		AS THE RULE INVALIDATES
+		YOUR STYLESHEET
+	   ----------------------------
+	*/
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='table-images/back.png',sizingMethod='crop');
+	background: none;
+}	
+#background-image tbody tr:hover td
+{
+	color: #339;
+	background: none;
+}
