@@ -12,7 +12,7 @@
 		refresh : function() {
 			//ur ajax goes here
 			var me = this;
-			$.getJSON("https://ratrase.s3.amazonaws.com/rat_rase/ranks/current/HIRSlotMachine?Expires=1395908011&AWSAccessKeyId=AKIAJ7LELYX3ORJ57K4A&Signature=PkFQo3Q1SMjw%2FhsionqdM066BsU%3D", function(data) {
+			$.getJSON(" https://ratrase.s3.amazonaws.com/rat_rase/ranks/current/HIRSlotMachine?Expires=1395947233&AWSAccessKeyId=AKIAJ7LELYX3ORJ57K4A&Signature=fN2B8TYHtVMQSfA1Ch4yC8sKtP0%3D", function(data) {
 				if (data) {
 					me.draw(data, $("#background-image"));
 				}
@@ -67,7 +67,7 @@
 				var id = "#" + player;
 
 				if ($(id).length != 0) {
-					$($(id).find("td")[2]).html(score);
+					$($(id).find("td")[1]).html(score);
 				} else {
 					var new_row = jQuery("<tr>").attr("id", player);
 					var col2 = jQuery("<td>").html(player);
