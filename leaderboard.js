@@ -5,16 +5,17 @@
 	};
 
 	myLeaderBoard.fn = myLeaderBoard.prototype = {
-		init : function() {
+		init : function(hook) {
 			this.scoreBoard = new Table();
+			this.hook = hook;
 		},
 
-		refresh : function() {
+		refresh : function(url) {
 			//ur ajax goes here
 			var me = this;
-			$.getJSON(" https://ratrase.s3.amazonaws.com/rat_rase/ranks/current/HIRSlotMachine?Expires=1395947233&AWSAccessKeyId=AKIAJ7LELYX3ORJ57K4A&Signature=fN2B8TYHtVMQSfA1Ch4yC8sKtP0%3D", function(data) {
+			$.getJSON(url, function(data) {
 				if (data) {
-					me.draw(data, $("#background-image"));
+					me.draw(data);
 				}
 			});
 
@@ -23,11 +24,11 @@
 			//this.draw(scores, $("#background-image"));
 		},
 
-		draw : function(json, hook) {
+		draw : function(json) {
 			this.scoreBoard.refreshValues(json);
-			if ($(hook).find("table").length == 0) {
-				$(hook).html(this.scoreBoard.html);
-				$('table').tableSort({
+			if ($(this.hook).find('table').length == 0) {
+				$(this.hook).html(this.scoreBoard.html);
+				$($(this.hook).find('table')[0]).tableSort({
 					animation : 'slide',
 					speed : 500,
 					direction : 'descending',
@@ -79,7 +80,7 @@
 					$(this.table).append(new_row);
 				}
 			}
-			$("#score-col").click();
+			$($(this.table).find("#score-col")[0]).click();
 		}
 	};
 

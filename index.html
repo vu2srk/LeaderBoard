@@ -6,20 +6,37 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<div id="background-image">
-			
-		</div>
+		<table>
+			<tr>
+				<td style="vertical-align:top"><div class="background-image" id="hir">
+
+				</div></td>
+				<td style="vertical-align:top"><div class="background-image" id="wwf">
+
+				</div></td>
+			</tr>
+		</table>
+
 	</body>
 </html>
 
 <script type="text/javascript">
+	$(document).ready(function() {
 
-    $(document).ready(function(){
-    	
-    	scoreBoard = new myLeaderBoard();
-    	
-    	scoreBoard.refresh();
-    	setInterval("scoreBoard.refresh()", 10000);
-    });
-	
+		function refreshPage() {
+			scoreBoardHIR.refresh(hirURL);
+			scoreBoardWWF.refresh(wwfURL);
+		}
+
+		scoreBoardHIR = new myLeaderBoard("#hir");
+		hirURL = "http://bigdata-mlapi.s3.amazonaws.com/rat_rase/ranks/current/HIRSlotMachine";
+		scoreBoardHIR.refresh(hirURL);
+
+		scoreBoardWWF = new myLeaderBoard("#wwf");
+		wwfURL = "http://bigdata-mlapi.s3.amazonaws.com/rat_rase/ranks/current/WWFTopScores";
+		scoreBoardWWF.refresh(wwfURL);
+
+		setInterval("refreshPage()", 10000);
+	});
+
 </script>
